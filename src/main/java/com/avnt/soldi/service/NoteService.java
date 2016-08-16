@@ -1,0 +1,53 @@
+package com.avnt.soldi.service;
+
+import com.avnt.soldi.model.cheque.Note;
+import com.avnt.soldi.model.repositories.NoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+
+/**
+ * Class NoteService is service, that handle NoteController
+ * Use @Autowired for connect to necessary repositories
+ *
+ * @version 1.1
+ * @author Dmitry
+ * @since 21.01.2016
+ */
+
+@Service
+public class NoteService {
+
+    @Autowired NoteRepository noteRepository;
+
+    /**
+     * Method addNote add note to DB with current DateTime
+     * @param chequeID is ID of cheque in database, in that client-side wants add a note comment
+     * @param note is data for Note.class, that was create on client-side
+     */
+    @Modifying
+    @Transactional
+    public void addNote(@PathVariable Long chequeID, @RequestBody Note note) {
+        noteRepository.save(note.withDateTime());
+    }
+
+    /**
+     * Method deleteNote delete note from DB
+     * @param chequeID is ID of cheque in database, in that client-side wants delete note comment
+     * @param noteID is ID of note in database, that client-side wants to delete
+     */
+    @Modifying
+    @Transactional
+    public void deleteNote(@PathVariable Long chequeID, @PathVariable Long noteID) {noteRepository.delete(noteID);}
+
+    @Transactional(readOnly = true)
+    public List<Note> getNotes(Long chequeID) {
+        return noteRepository.findByChequeId(chequeID);
+    }
+
+}
