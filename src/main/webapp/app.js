@@ -112,8 +112,8 @@ angular.module("mainModule", ['gettext', 'ui.utils', 'ui.router', 'angularMoment
     .config(['$mdThemingProvider', function($mdThemingProvider){
             $mdThemingProvider
                 .theme('default')
-                .primaryPalette('blue-grey', {'default':'500'})
-                .accentPalette('orange', {'default':'500'});
+                .primaryPalette('blue', {'default':'500'})
+                .accentPalette('teal', {'default':'500'});
 
             $mdThemingProvider
                 .theme('inner-block')
@@ -121,9 +121,9 @@ angular.module("mainModule", ['gettext', 'ui.utils', 'ui.router', 'angularMoment
 
             $mdThemingProvider
                 .theme('header')
-                .primaryPalette('blue-grey', {'default':'50'})
-                .accentPalette('orange', {'default':'50'})
-                .dark();
+                .primaryPalette('indigo', {'default':'500'})
+                .accentPalette('grey', {'default':'200'});
+//                .dark();
     }])
     .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = false;

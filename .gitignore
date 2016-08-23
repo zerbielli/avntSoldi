@@ -78,3 +78,5 @@ bower_components/
 dist/
 .tmp/
 
+/steam-service.log
+/npm-debug.log
