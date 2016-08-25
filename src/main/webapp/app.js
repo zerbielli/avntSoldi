@@ -14,6 +14,9 @@ angular.module("mainModule", ['gettext', 'ui.utils', 'ui.router', 'angularMoment
             $locationProvider.html5Mode(true);
 
             $stateProvider
+                .state('menu', {
+                    url: "/menu"
+                })
                 .state('cheque', {
                     abstract: true,
                     url: "/cheques",
